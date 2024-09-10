@@ -43,6 +43,7 @@
         "font-size": "12px"
     },
     ".searchButtonRight:hover": {
-        "opacity": "80%"
+        "opacity": "80%",
+        "background-color": ""
     }
 }

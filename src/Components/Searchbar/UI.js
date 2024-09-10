@@ -12,6 +12,7 @@ import { useState } from "react";
 import { BsChevronDown, BsChevronRight, BsSearch } from "react-icons/bs";
 import removeUnit from "../../Services/unitConverter";
 import Dropdown from "../UI/Dropdown";
+import Property from "../UI/Property";
 
 export default function UI({styles, setStyles, properties, setProperties}) {
   let [isBorderOpen, setIsBorderOpen] = useState(false);
@@ -96,13 +97,31 @@ export default function UI({styles, setStyles, properties, setProperties}) {
           </div>
         }
       </div>
-
+      <Dropdown
+        state={isRightSearchOpen}
+        setter={setIsRightSearchOpen}
+        label={"Search Button (Right)"}
+        content={
+          <>
+          <Property
+            label={"Enabled"}
+            type={"checkbox"}
+            value={properties.isRightSearchEnabled}
+            action={(e) => {
+              let result = {...properties};
+              result["isRightSearchEnabled"] = e.target.checked;
+              setProperties(result);
+            }}
+          />
+          </>
+        }
+      />
 
       {/* RIGHT SEARCH BUTTON */}
       <div className="dropdown">
         <div onClick={() => {toggle(isRightSearchOpen, setIsRightSearchOpen)}}>
           {chevrons(isRightSearchOpen)}
-          <span className="label" >Right Search Button</span>
+          <span className="label">Right Search Button</span>
         </div>
         {isRightSearchOpen &&
           <div className="propertyContainer">
@@ -200,91 +219,124 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               />
             </div>
 
-
             {/* RIGHT SEARCH ICON */}
-            <div className="dropdown nested">
-              <div onClick={() => {toggle(isRightSearchIconOpen, setIsRightSearchIconOpen)}}>
-                {chevrons(isRightSearchIconOpen)}
-                <span className="label" >Icon</span>
-              </div>
-              {isRightSearchIconOpen &&
-              <div className="propertyContainer">
-                <div className="property">
-                  <span>Enabled</span>
-                  <input
-                    className="checkbox"
-                    type="checkbox"
-                    checked={properties["isRightSearchIconEnabled"]}
-                    onChange={(e) => {
-                      let result = {...properties};
-                      result["isRightSearchIconEnabled"] = e.target.checked;
-                      setProperties(result);
-                    }}
-                  />
-                </div>
-                <div className="property">
-                  <span>Type</span>
-                  <select
-                    className="select"
-                    value={properties["rightSearchIcon"]}
-                    onChange={(e) => {
-                      let result = {...properties};
-                      result["rightSearchIcon"] = e.target.value;
-                      setProperties(result);
-                    }}
-                  >
+            <Dropdown
+              state={isRightSearchIconOpen}
+              setter={setIsRightSearchIconOpen}
+              label={"Icon"}
+              subclass={"nested"}
+              content={
+                <>
+                <Property
+                  label={"Enabled"}
+                  type={"checkbox"}
+                  value={properties["isRightSearchIconEnabled"]}
+                  action={(e) => {
+                    let result = {...properties};
+                    result["isRightSearchIconEnabled"] = e.target.checked;
+                    setProperties(result);
+                  }}
+                />
+                <Property
+                  label={"Type"}
+                  type={"select"}
+                  value={properties["rightSearchIcon"]}
+                  action={(e) => {
+                    let result = {...properties};
+                    result["rightSearchIcon"] = e.target.value;
+                    setProperties(result);
+                  }}
+                  options={
+                    <>
                     <option value="simple">Simple</option>
                     <option value="modern">Modern</option>
                     <option value="arrow">Arrow</option>
                     <option value="caret">Caret</option>
                     <option value="caret-solid">Caret Solid</option>
                     <option value="none">None</option>
-                  </select>
-                </div>
-                <div className="property">
-                  <span>Size</span>
-                  <input
-                    type="number"
-                    className="number"
-                    min="1"
-                    max="30"
-                    value={properties["rightSearchIconSize"]}
-                    onChange={(e) => {
-                      let result = {...properties};
-                      if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-                      if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
-                      result["rightSearchIconSize"] = e.target.value;
-                      setProperties(result);
-                    }}
-                  />
-                </div>
-                <div className="property">
-                  <span>Color</span>
-                  <input
-                    type="color"
-                    className="color"
-                    value={properties["rightSearchIconColor"]}
-                    onChange={(e) => {
-                      let result = {...properties};
-                      result["rightSearchIconColor"] = e.target.value;
-                      setProperties(result);
-                    }}
-                  />
-                </div>
-
-              </div>
+                    </>
+                  }
+                />
+                <Property
+                  label={"Size"}
+                  type={"number"}
+                  value={properties["rightSearchIconSize"]}
+                  min={"1"}
+                  max={"30"}
+                  action={(e) => {
+                    let result = {...properties};
+                    if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+                    if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+                    result["rightSearchIconSize"] = e.target.value;
+                    setProperties(result);
+                  }}
+                />
+                <Property
+                  label={"Color"}
+                  type={"color"}
+                  value={properties["rightSearchIconColor"]}
+                  action={(e) => {
+                    let result = {...properties};
+                    result["rightSearchIconColor"] = e.target.value;
+                    setProperties(result);
+                  }}
+                />
+                </>
               }
-            </div>
-
+            />
 
             {/* RIGHT SEARCH HOVER EFFECTS */}
-            <div className="dropdown nested">
-              <div onClick={() => {toggle(isRightSearchHoverOpen, setIsRightSearchHoverOpen)}}>
-                  {chevrons(isRightSearchHoverOpen)}
-                  <span className="label">Hover Effects</span>
-              </div>
-            </div>
-            <Dropdown state={isRightSearchHoverOpen} setter={setIsRightSearchHoverOpen}/>
+            <Dropdown
+              state={isRightSearchHoverOpen}
+              setter={setIsRightSearchHoverOpen}
+              label={"Hover Effects"}
+              subclass={"nested"}
+              content={
+                <>
+                <Property
+                  label={"Opacity"}
+                  type={"number"}
+                  value={removeUnit(styles[".searchButtonRight:hover"]["opacity"])}
+                  min={"0"}
+                  max={"100"}
+                  action={(e)=> {
+                    let result = {...styles};
+                    if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+                    if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+                    result[".searchButtonRight:hover"]["opacity"] = `${e.target.value}%`;
+                    setStyles(result);
+                  }}
+                />
+                <Property
+                  label={"Enable Color"}
+                  type={"checkbox"}
+                  value={properties["isRightSearchHoverColor"]}
+                  action={(e) => {
+                    if(e.target.checked === false) {
+                      let result = {...styles};
+                      result[".searchButtonRight:hover"]["background-color"] = result[".searchButtonRight"]["background-color"];
+                      setStyles(result);
+                    }
+                    let result = {...properties};
+                    result["isRightSearchHoverColor"] = e.target.checked;
+                    setProperties(result);
+                  }}
+                />
+                {properties.isRightSearchHoverColor &&
+                  <Property
+                    label={"Color"}
+                    type={"color"}
+                    value={styles[".searchButtonRight:hover"]["background-color"]}
+                    action={(e) => {
+                      let result = {...styles};
+                      result[".searchButtonRight:hover"]["background-color"] = e.target.value;
+                      setStyles(result);
+                    }}
+                  />
+                }
+                </>
+              }
+            />
           </div>
         }
       </div>

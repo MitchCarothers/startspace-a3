@@ -31,10 +31,11 @@
 
 .property {
   display: grid;
-  grid-template-columns: 80px 100px;
+  grid-template-columns: 90px 100px;
   margin-bottom: 6px;
   min-width: 100px;
   align-items: center;
+  font-size: 14px;
 }
 
 .propertyContainer > :first-child {

@@ -1,6 +1,8 @@
+// Used for creating the customizations UI in each component
+
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-export default function Dropdown({state, setter}) {
+export default function Dropdown({state, setter, label, content, subclass}) {
   let chevrons = (condition) => {
     if(condition) {
       return(<BsChevronDown />);
@@ -10,10 +12,17 @@ export default function Dropdown({state, setter}) {
   };
 
   return(
-    <div className="dropdown nested">
+    <div className={`dropdown ${subclass}`}>
       <div onClick={() => {setter(!state)}}>
         {chevrons(state)}
+        <span className="label">{label}</span>
       </div>
+      {
+        state &&
+        <div className="propertyContainer">
+          {content}
+        </div>
+      }
     </div>
   );
 };

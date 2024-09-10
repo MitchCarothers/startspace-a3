@@ -3,6 +3,7 @@
     "rightSearchText": "",
     "rightSearchIcon": "modern",
     "rightSearchIconSize": "23",
-    "rightSearchIconColor": "#000000",
-    "isRightSearchIconEnabled": true
+    "rightSearchIconColor": "#7d7d7d",
+    "isRightSearchIconEnabled": true,
+    "isRightSearchHoverColor": false
 }
