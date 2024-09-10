@@ -35,6 +35,42 @@ export default function UI({styles, setStyles, properties, setProperties}) {
   return(
     <div className="ui">
       {/* BORDER */}
+      <Dropdown 
+        state={isBorderOpen}
+        setter={setIsBorderOpen}
+        label={"Border"}
+        content={
+          <>
+          <Property
+            label={"Color"}
+            type={"color"}
+            value={styles[".searchForm > :first-child"]["border-color"]}
+            action={(e) => {
+              let result = {...styles};
+              result[".searchForm > :first-child"]["border-color"] = e.target.value;
+              result[".searchForm > :last-child"]["border-color"] = e.target.value;
+              result[".searchForm > :not(:first-child):not(:last-child)"]["border-color"] = e.target.value;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Width"}
+            type={"number"}
+            value={removeUnit(styles[".searchForm > :first-child"]["border-width"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              result[".searchForm > :first-child"]["border-width"] = `${e.target.value}px`;
+              result[".searchForm > :last-child"]["border-width"] = `${e.target.value}px`;
+              result[".searchForm > :not(:first-child):not(:last-child)"]["border-width"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          </>
+        }
+      />
       <div className="dropdown">
         <div onClick={() => {toggle(isBorderOpen, setIsBorderOpen)}}>
           {chevrons(isBorderOpen)}
@@ -97,6 +133,8 @@ export default function UI({styles, setStyles, properties, setProperties}) {
           </div>
         }
       </div>
+
+      {/* Right Search Button */}
       <Dropdown
         state={isRightSearchOpen}
         setter={setIsRightSearchOpen}
@@ -113,233 +151,196 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               setProperties(result);
             }}
           />
-          </>
-        }
-      />
-
-      {/* RIGHT SEARCH BUTTON */}
-      <div className="dropdown">
-        <div onClick={() => {toggle(isRightSearchOpen, setIsRightSearchOpen)}}>
-          {chevrons(isRightSearchOpen)}
-          <span className="label">Right Search Button</span>
-        </div>
-        {isRightSearchOpen &&
-          <div className="propertyContainer">
-            <div className="property">
-              <span>Enabled</span>
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={properties.isRightSearchEnabled}
-                onChange={(e) => {
+          <Property
+            label={"Color"}
+            type={"color"}
+            value={styles[".searchButtonRight"]["background-color"]}
+            action={(e) => {
+              let result = {...styles};
+              result[".searchButtonRight"]["background-color"] = e.target.value;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Width"}
+            type={"number"}
+            value={removeUnit(styles[".searchButtonRight"]["width"])}
+            min={"1"}
+            max={"900"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".searchButtonRight"]["width"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Text"}
+            type={"text"}
+            value={properties["rightSearchText"]}
+            action={(e) => {
+              let result = {...properties};
+              result["rightSearchText"] = e.target.value;
+              setProperties(result);
+            }}
+          />
+          <Property
+            label={"Font"}
+            type={"select"}
+            value={styles[".searchButtonRight"]["font-family"]}
+            action={(e) => {
+              let result = {...styles};
+              result[".searchButtonRight"]["font-family"] = e.target.value;
+              setStyles(result);
+            }}
+            options={
+              <>
+              <option value="Arial">Arial</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Franklin Gothic">Franklin Gothic</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Brush Script MT">Brush Script MT</option>
+              <option value="Garamond">Garamond</option>
+              </>
+            }
+          />
+          <Property
+            label={"Font Size"}
+            type={"number"}
+            value={removeUnit(styles[".searchButtonRight"]["font-size"])}
+            min={"1"}
+            max={"60"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".searchButtonRight"]["font-size"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          {/* Icon (Right Search Button) */}
+          <Dropdown
+            state={isRightSearchIconOpen}
+            setter={setIsRightSearchIconOpen}
+            label={"Icon"}
+            subclass={"nested"}
+            content={
+              <>
+              <Property
+                label={"Enabled"}
+                type={"checkbox"}
+                value={properties["isRightSearchIconEnabled"]}
+                action={(e) => {
                   let result = {...properties};
-                  result["isRightSearchEnabled"] = e.target.checked;
+                  result["isRightSearchIconEnabled"] = e.target.checked;
                   setProperties(result);
                 }}
               />
-            </div>
-            <div className="property">
-              <span>Color</span>
-              <input
-                type="color"
-                className="color"
-                value={styles[".searchButtonRight"]["background-color"]}
-                onChange={(e) => {
-                  let result = {...styles};
-                  result[".searchButtonRight"]["background-color"] = e.target.value;
-                  setStyles(result);
+              <Property
+                label={"Type"}
+                type={"select"}
+                value={properties["rightSearchIcon"]}
+                action={(e) => {
+                  let result = {...properties};
+                  result["rightSearchIcon"] = e.target.value;
+                  setProperties(result);
                 }}
+                options={
+                  <>
+                  <option value="simple">Simple</option>
+                  <option value="modern">Modern</option>
+                  <option value="arrow">Arrow</option>
+                  <option value="caret">Caret</option>
+                  <option value="caret-solid">Caret Solid</option>
+                  <option value="none">None</option>
+                  </>
+                }
               />
-            </div>
-            <div className="property">
-              <span>Width</span>
-              <input
-                className="number"
-                type="number"
-                min="1"
-                max="800"
-                value={removeUnit(styles[".searchButtonRight"]["width"])}
-                onChange={(e) => {
-                  let result = {...styles};
+              <Property
+                label={"Size"}
+                type={"number"}
+                value={properties["rightSearchIconSize"]}
+                min={"1"}
+                max={"30"}
+                action={(e) => {
+                  let result = {...properties};
                   if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
                   if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
-                  result[".searchButtonRight"]["width"] = `${e.target.value}px`;
-                  setStyles(result);
-                }}
-              />
-            </div>
-            <div className="property">
-              <span>Text</span>
-              <input
-                className="text"
-                type="text"
-                value={properties["rightSearchText"]}
-                onChange={(e) => {
-                  let result = {...properties};
-                  result["rightSearchText"] = e.target.value;
+                  result["rightSearchIconSize"] = e.target.value;
                   setProperties(result);
                 }}
               />
-            </div>
-            <div className="property">
-              <span>Font</span>
-              <select
-                value={styles[".searchButtonRight"]["font-family"]}
-                onChange={(e) => {
-                  let result = {...styles};
-                  result[".searchButtonRight"]["font-family"] = e.target.value;
-                  setStyles(result);
+              <Property
+                label={"Color"}
+                type={"color"}
+                value={properties["rightSearchIconColor"]}
+                action={(e) => {
+                  let result = {...properties};
+                  result["rightSearchIconColor"] = e.target.value;
+                  setProperties(result);
                 }}
-              >
-                <option value="Arial">Arial</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Franklin Gothic">Franklin Gothic</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Brush Script MT">Brush Script MT</option>
-                <option value="Garamond">Garamond</option>
-              </select>
-            </div>
-            <div className="property">
-              <span>Font Size</span>
-              <input
-                className="number"
-                type="number"
-                min="1"
-                max="60"
-                value={removeUnit(styles[".searchButtonRight"]["font-size"])}
-                onChange={(e) => {
+              />
+              </>
+            }
+          />
+          {/* Hover Effects (Right Search Button) */}
+          <Dropdown
+            state={isRightSearchHoverOpen}
+            setter={setIsRightSearchHoverOpen}
+            label={"Hover Effects"}
+            subclass={"nested"}
+            content={
+              <>
+              <Property
+                label={"Opacity"}
+                type={"number"}
+                value={removeUnit(styles[".searchButtonRight:hover"]["opacity"])}
+                min={"0"}
+                max={"100"}
+                action={(e)=> {
                   let result = {...styles};
                   if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
                   if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
-                  result[".searchButtonRight"]["font-size"] = `${e.target.value}px`;
+                  result[".searchButtonRight:hover"]["opacity"] = `${e.target.value}%`;
                   setStyles(result);
                 }}
               />
-            </div>
-
-            {/* RIGHT SEARCH ICON */}
-            <Dropdown
-              state={isRightSearchIconOpen}
-              setter={setIsRightSearchIconOpen}
-              label={"Icon"}
-              subclass={"nested"}
-              content={
-                <>
-                <Property
-                  label={"Enabled"}
-                  type={"checkbox"}
-                  value={properties["isRightSearchIconEnabled"]}
-                  action={(e) => {
-                    let result = {...properties};
-                    result["isRightSearchIconEnabled"] = e.target.checked;
-                    setProperties(result);
-                  }}
-                />
-                <Property
-                  label={"Type"}
-                  type={"select"}
-                  value={properties["rightSearchIcon"]}
-                  action={(e) => {
-                    let result = {...properties};
-                    result["rightSearchIcon"] = e.target.value;
-                    setProperties(result);
-                  }}
-                  options={
-                    <>
-                    <option value="simple">Simple</option>
-                    <option value="modern">Modern</option>
-                    <option value="arrow">Arrow</option>
-                    <option value="caret">Caret</option>
-                    <option value="caret-solid">Caret Solid</option>
-                    <option value="none">None</option>
-                    </>
+              <Property
+                label={"Enable Color"}
+                type={"checkbox"}
+                value={properties["isRightSearchHoverColor"]}
+                action={(e) => {
+                  if(e.target.checked === false) {
+                    let result = {...styles};
+                    result[".searchButtonRight:hover"]["background-color"] = result[".searchButtonRight"]["background-color"];
+                    setStyles(result);
                   }
-                />
-                <Property
-                  label={"Size"}
-                  type={"number"}
-                  value={properties["rightSearchIconSize"]}
-                  min={"1"}
-                  max={"30"}
-                  action={(e) => {
-                    let result = {...properties};
-                    if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-                    if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
-                    result["rightSearchIconSize"] = e.target.value;
-                    setProperties(result);
-                  }}
-                />
+                  let result = {...properties};
+                  result["isRightSearchHoverColor"] = e.target.checked;
+                  setProperties(result);
+                }}
+              />
+              {properties.isRightSearchHoverColor &&
                 <Property
                   label={"Color"}
                   type={"color"}
-                  value={properties["rightSearchIconColor"]}
+                  value={styles[".searchButtonRight:hover"]["background-color"]}
                   action={(e) => {
-                    let result = {...properties};
-                    result["rightSearchIconColor"] = e.target.value;
-                    setProperties(result);
-                  }}
-                />
-                </>
-              }
-            />
-
-            {/* RIGHT SEARCH HOVER EFFECTS */}
-            <Dropdown
-              state={isRightSearchHoverOpen}
-              setter={setIsRightSearchHoverOpen}
-              label={"Hover Effects"}
-              subclass={"nested"}
-              content={
-                <>
-                <Property
-                  label={"Opacity"}
-                  type={"number"}
-                  value={removeUnit(styles[".searchButtonRight:hover"]["opacity"])}
-                  min={"0"}
-                  max={"100"}
-                  action={(e)=> {
                     let result = {...styles};
-                    if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-                    if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
-                    result[".searchButtonRight:hover"]["opacity"] = `${e.target.value}%`;
+                    result[".searchButtonRight:hover"]["background-color"] = e.target.value;
                     setStyles(result);
                   }}
                 />
-                <Property
-                  label={"Enable Color"}
-                  type={"checkbox"}
-                  value={properties["isRightSearchHoverColor"]}
-                  action={(e) => {
-                    if(e.target.checked === false) {
-                      let result = {...styles};
-                      result[".searchButtonRight:hover"]["background-color"] = result[".searchButtonRight"]["background-color"];
-                      setStyles(result);
-                    }
-                    let result = {...properties};
-                    result["isRightSearchHoverColor"] = e.target.checked;
-                    setProperties(result);
-                  }}
-                />
-                {properties.isRightSearchHoverColor &&
-                  <Property
-                    label={"Color"}
-                    type={"color"}
-                    value={styles[".searchButtonRight:hover"]["background-color"]}
-                    action={(e) => {
-                      let result = {...styles};
-                      result[".searchButtonRight:hover"]["background-color"] = e.target.value;
-                      setStyles(result);
-                    }}
-                  />
-                }
-                </>
               }
-            />
-          </div>
+              </>
+            }
+          />
+          </>
         }
-      </div>
+      />
     </div>
   );
 };
