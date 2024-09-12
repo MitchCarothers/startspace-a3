@@ -1,9 +1,21 @@
 {
     "isRightSearchEnabled": true,
     "rightSearchText": "",
-    "rightSearchIcon": "modern",
-    "rightSearchIconSize": "23",
-    "rightSearchIconColor": "#7d7d7d",
+    "rightSearchIcon": "simple",
+    "rightSearchIconSize": "15",
+    "rightSearchIconColor": "#FFFFFF",
     "isRightSearchIconEnabled": true,
-    "isRightSearchHoverColor": false
+    "isRightSearchHoverColor": false,
+    "placeholderText": "Search",
+    "engineSelectIconSize": "20",
+    "engineSelectIconColor": "#61e927",
+    "currentEngine": "google",
+    "searchEngines": {
+        "google": "https://www.google.com/search?q=",
+        "duckduckgo": "https://www.duckduckgo.com/?q=",
+        "bing": "https://www.bing.com/search?q=",
+        "yahoo": "https://search.yahoo.com/search?p=",
+        "ecosia": "https://www.ecosia.org/search?q="
+    },
+    "isOpenNewTab": true
 }

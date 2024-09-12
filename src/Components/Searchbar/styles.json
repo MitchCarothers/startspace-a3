@@ -1,4 +1,9 @@
 {
+    ":root":  {
+        "--searchHeight": "40px",
+        "--engineOffset": "2px",
+        "--engineSearchHeight": "calc(var(--searchHeight) - 42px - var(--engineOffset))"
+    },
     ".searchForm > :first-child": {
         "border-style": "solid",
         "border-right-style": "none",
@@ -24,26 +29,87 @@
     },
     ".searchForm": {
         "display": "flex",
-        "width": "300px",
-        "height": "35px"
+        "width": "400px",
+        "height": "var(--searchHeight)"
     },
     ".searchText": {
         "flex": "1",
-        "padding": "0px 10px",
         "font-size": "16px",
-        "outline": "none"
+        "outline": "none",
+        "min-width": "10px"
     },
     ".searchButtonRight": {
-        "background-color": "#F0F0F0",
+        "background-color": "#61e927",
         "width": "50px",
         "display": "flex",
         "align-items": "center",
         "justify-content": "center",
         "font-family": "arial",
-        "font-size": "12px"
+        "font-size": "12px",
+        "color": "#000000"
     },
     ".searchButtonRight:hover": {
         "opacity": "80%",
         "background-color": ""
+    },
+    ".searchCancel": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "background-color": "rgb(0,0,0,0)",
+        "padding-right": "5px"
+    },
+    ".searchCancelButton": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "background-color": "rgb(0,0,0,0)",
+        "border": "none",
+        "border-radius": "40px",
+        "width": "28px",
+        "height": "28px"
+    },
+    ".searchCancelButton:hover": {
+        "background-color": "rgb(0,0,0,.1)"
+    },
+    ".engineSelectContainer": {
+        "border": "none"
+    },
+    ".engineSelectButton": {
+        "position": "relative",
+        "width": "38px",
+        "background-color": "transparent",
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "start",
+        "margin-top": "calc(var(--engineSearchHeight) / 2)",
+        "border": "none"
+    },
+    ".engineSelectButton > .engineIcon": {
+        "margin": "10px 0px"
+    },
+    ".engineSelect": {
+        "width": "28px",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "flex-direction": "column",
+        "gap": "10px",
+        "background-color": "rgb(2,0,0,0)",
+        "padding": "10px",
+        "border-radius": "30px",
+        "border": "none"
+    },
+    ".engineIcon": {
+        "opacity": "75%"
+    },
+    ".engineIcon:hover": {
+        "opacity": "100%"
+    },
+    "body": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "height": "700px"
     }
 }
