@@ -2,7 +2,8 @@
     ":root":  {
         "--searchHeight": "40px",
         "--engineOffset": "2px",
-        "--engineSearchHeight": "calc(var(--searchHeight) - 42px - var(--engineOffset))"
+        "--engineIconOffset": "18px",
+        "--engineSearchHeight": "calc((var(--searchHeight) - 30px - var(--engineOffset)) - var(--engineIconOffset))"
     },
     ".searchForm > :first-child": {
         "border-style": "solid",
@@ -34,11 +35,27 @@
     },
     ".searchText": {
         "flex": "1",
+        "color": "#000000",
         "font-size": "16px",
         "outline": "none",
-        "min-width": "10px"
+        "min-width": "10px",
+        "padding": "0px 0px",
+        "font-family": "",
+        "padding-left": "0px"
     },
-    ".searchButtonRight": {
+    "::-webkit-input-placeholder": {
+        "color": "#737373"
+    },
+    ":-moz-placeholder": {
+        "color": "#737373"
+    },
+    ":-ms-input-placeholder": {
+        "color": "#737373"
+    },
+    "::placeholder": {
+        "color": "#737373"
+    },
+    ".searchButton": {
         "background-color": "#61e927",
         "width": "50px",
         "display": "flex",
@@ -48,9 +65,11 @@
         "font-size": "12px",
         "color": "#000000"
     },
-    ".searchButtonRight:hover": {
+    ".searchButton:hover": {
         "opacity": "80%",
         "background-color": ""
+    },
+    ".searchIcon": {
     },
     ".searchCancel": {
         "display": "flex",
@@ -76,14 +95,15 @@
         "border": "none"
     },
     ".engineSelectButton": {
-        "position": "relative",
         "width": "38px",
         "background-color": "transparent",
         "display": "flex",
         "justify-content": "center",
         "align-items": "start",
         "margin-top": "calc(var(--engineSearchHeight) / 2)",
-        "border": "none"
+        "border": "none",
+        "padding": "0px",
+        "margin": "none"
     },
     ".engineSelectButton > .engineIcon": {
         "margin": "10px 0px"
@@ -101,7 +121,8 @@
         "border": "none"
     },
     ".engineIcon": {
-        "opacity": "75%"
+        "opacity": "75%",
+        "z-index": "1"
     },
     ".engineIcon:hover": {
         "opacity": "100%"

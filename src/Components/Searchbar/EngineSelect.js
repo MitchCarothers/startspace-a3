@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsBing, BsGoogle } from "react-icons/bs";
 import { FaYahoo } from "react-icons/fa";
 import { RiTreeFill } from "react-icons/ri";
 import { SiDuckduckgo } from "react-icons/si";
 
-export default function EngineSelect({properties, setProperties}) {
+export default function EngineSelect({properties, setProperties, styles}) {
     let [isEngineSelectOpen, setIsEngineSelectOpen] = useState(false);
+
+    useEffect(() => {
+        let result = {...properties};
+        result["currentEngine"] = result["defaultEngine"];
+        setProperties(result);
+
+        let styleResult ={...styles};
+        styleResult[".engineSelectButton"]["width"] = (
+            `${parseInt(properties["engineSelectIconSize"])}px`)
+    }, []);
+
     let returnValue;
     let getIcon = (name) => {
         switch(name) {

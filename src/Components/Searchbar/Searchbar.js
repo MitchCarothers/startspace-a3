@@ -26,16 +26,29 @@ export default function Searchbar() {
   return(
     <>
       <form className="searchForm">
+        {properties.searchButtonSide === "left" &&
+        <button className="searchButton" type="submit" onClick={search}>
+          {properties.searchText}
+          <SearchIcon properties={properties}/>
+        </button>
+        }
+
+        {properties.engineSelectSide === "left" &&
         <EngineSelect
           properties={properties}
           setProperties={setProperties}
+          styles={styles}
+          setStyles={setStyles}
         />
+        }
+
         <input
           placeholder={properties.placeholderText}
           className="searchText"
           value={searchValue}
           onChange={(e) => { setSearchValue(e.target.value) }}
         />
+
         {searchValue !== "" &&
         <div className="searchCancel">
           <button onClick={() => {setSearchValue("")}} className={"searchCancelButton"} type="button">
@@ -43,13 +56,25 @@ export default function Searchbar() {
           </button>
         </div>
         }
-        {properties.isRightSearchEnabled &&
-          <button className="searchButtonRight" type="submit" onClick={search}>
-            {properties.rightSearchText}
-            <SearchIcon properties={properties}/>
-          </button>
+
+        
+        {properties.engineSelectSide === "right" &&
+        <EngineSelect
+          properties={properties}
+          setProperties={setProperties}
+          styles={styles}
+          setStyles={setStyles}
+        />
+        }
+
+        {properties.searchButtonSide === "right" &&
+        <button className="searchButton" type="submit" onClick={search}>
+          {properties.searchText}
+          <SearchIcon properties={properties}/>
+        </button>
         }
       </form>
+
       <UI
         styles={styles}
         setStyles={setStyles}

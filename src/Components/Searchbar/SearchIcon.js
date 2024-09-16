@@ -5,37 +5,77 @@ import { FaRightLong } from "react-icons/fa6";
 export default function SearchIcon({properties}) {
     return(
       <>
-      {properties.isRightSearchIconEnabled &&
+      {properties.isSearchIconEnabled &&
         <>
-        {properties.rightSearchIcon === "simple" &&
-          <FaSearch size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "simple" &&
+          <FaSearch
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "modern" &&
-          <BsChevronRight size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "modern" &&
+          <BsChevronRight
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "arrow" &&
-          <BsArrowRight size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "arrow" &&
+          <BsArrowRight
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "caret" &&
-          <BsCaretRight size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "caret" &&
+          <BsCaretRight
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "caret-solid" &&
-          <BsCaretRightFill size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "caret-solid" &&
+          <BsCaretRightFill
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "hand-right" &&
-          <FaHandPointRight size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "hand-right" &&
+          <FaHandPointRight
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "fat-arrow" &&
-          <FaRightLong size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "fat-arrow" &&
+          <FaRightLong
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"  
+          />
         }
-        {properties.rightSearchIcon === "double-angle" &&
-          <FaAngleDoubleRight size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "double-angle" &&
+          <FaAngleDoubleRight
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "seedling" &&
-          <FaSeedling size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "seedling" &&
+          <FaSeedling
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
-        {properties.rightSearchIcon === "frog" &&
-          <FaFrog size={properties.rightSearchIconSize} color={properties.rightSearchIconColor}/>
+        {properties.searchIcon === "frog" &&
+          <FaFrog
+            size={properties.searchIconSize}
+            color={properties.searchIconColor}
+            className="searchIcon"
+          />
         }
         </>
       }

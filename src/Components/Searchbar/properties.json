@@ -1,14 +1,17 @@
 {
-    "isRightSearchEnabled": true,
-    "rightSearchText": "",
-    "rightSearchIcon": "simple",
-    "rightSearchIconSize": "15",
-    "rightSearchIconColor": "#FFFFFF",
-    "isRightSearchIconEnabled": true,
-    "isRightSearchHoverColor": false,
+    "isSearchEnabled": true,
+    "searchText": "",
+    "searchIcon": "simple",
+    "searchIconSize": "15",
+    "searchIconColor": "#FFFFFF",
+    "isSearchIconEnabled": true,
+    "isSearchHoverColor": false,
+    "searchButtonSide": "right",
     "placeholderText": "Search",
-    "engineSelectIconSize": "20",
+    "engineSelectIconSize": "27",
     "engineSelectIconColor": "#61e927",
+    "isEngineSelectEnabled": true,
+    "engineSelectSide": "left",
     "currentEngine": "google",
     "searchEngines": {
         "google": "https://www.google.com/search?q=",
@@ -17,5 +20,6 @@
         "yahoo": "https://search.yahoo.com/search?p=",
         "ecosia": "https://www.ecosia.org/search?q="
     },
+    "defaultEngine": "ecosia",
     "isOpenNewTab": true
 }
