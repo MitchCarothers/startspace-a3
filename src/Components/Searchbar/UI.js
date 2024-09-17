@@ -49,6 +49,18 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               setStyles(result);
             }}
           />
+          <Property
+            label={"Base Color"}
+            type={"color"}
+            value={styles[".searchForm > :first-child"]["background-color"]}
+            action={(e) => {
+              let result = {...styles};
+              result[".searchForm > :first-child"]["background-color"] = e.target.value;
+              result[".searchForm > :last-child:not(.searchButtonRight)"]["background-color"] = e.target.value;
+              result[".searchForm > :not(:first-child):not(:last-child)"]["background-color"] = e.target.value;
+              setStyles(result);
+            }}
+          />
           </>
         }
       />

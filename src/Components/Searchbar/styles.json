@@ -11,7 +11,8 @@
         "border-top-left-radius": "20px",
         "border-bottom-left-radius": "20px",
         "border-color": "#AAAAAA",
-        "border-width": "1px"
+        "border-width": "1px",
+        "background-color": "#FFFFFF"
     },
     ".searchForm > :last-child": {
         "border-style": "solid",
@@ -27,6 +28,9 @@
         "border-right-style": "none",
         "border-color": "#AAAAAA",
         "border-width": "1px"
+    },
+    ".searchForm > :last-child:not(.searchButtonRight)": {
+        "background-color": "#FFFFFF"
     },
     ".searchForm": {
         "display": "flex",
