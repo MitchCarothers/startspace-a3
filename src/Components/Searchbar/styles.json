@@ -98,7 +98,7 @@
         "height": "28px"
     },
     ".searchCancelButton:hover": {
-        "background-color": "#000000"
+        "background-color": "#F2F2F2"
     },
     ".engineSelectContainer": {
         "border": "none",

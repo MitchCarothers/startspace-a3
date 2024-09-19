@@ -1,5 +1,5 @@
 import { useState } from "react";
-import removeUnit from "../../Services/unitConverter";
+import { minMaxChecker, removeUnit } from "../../Services/microservices";
 import Dropdown from "../UI/Dropdown";
 import Property from "../UI/Property";
 
@@ -30,8 +30,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"1800"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchForm"]["width"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -44,8 +43,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"500"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[":root"]["--searchHeight"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -108,8 +106,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"900"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchButton"]["width"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -122,8 +119,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"20"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchButton"]["padding-left"] = `${e.target.value}px`
               setStyles(result);
             }}
@@ -136,8 +132,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"20"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchButton"]["padding-right"] = `${e.target.value}px`
               setStyles(result);
             }}
@@ -182,8 +177,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"60"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchButton"]["font-size"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -249,8 +243,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
                 max={"30"}
                 action={(e) => {
                   let result = {...properties};
-                  if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-                  if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+                  e = minMaxChecker(e);
                   result["searchIconSize"] = e.target.value;
                   setProperties(result);
                 }}
@@ -284,8 +277,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
                 max={"100"}
                 action={(e)=> {
                   let result = {...styles};
-                  if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-                  if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+                  e = minMaxChecker(e);
                   result[".searchButton:hover"]["opacity"] = `${e.target.value}%`;
                   setStyles(result);
                 }}
@@ -375,8 +367,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"20"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".engineSelectContainer"]["padding-left"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -389,8 +380,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"20"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".engineSelectContainer"]["padding-right"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -414,8 +404,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             action={(e) => {
               let result = {...properties};
               let styleResult = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result["engineSelectIconSize"] = e.target.value;
               styleResult[".engineSelectButton"]["width"] = `${parseInt(e.target.value) + 14}px`;
               setProperties(result);
@@ -429,8 +418,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"100"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[":root"]["--engineIconOffset"] = `${e.target.value}px`
               setStyles(result);
             }}
@@ -496,8 +484,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             max={"40"}
             action={(e) => {
               let result = {...styles};
-              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
-              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              e = minMaxChecker(e);
               result[".searchText"]["padding-left"] = `${e.target.value}px`;
               setStyles(result);
             }}
@@ -654,6 +641,33 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               let result = {...styles};
               result[".searchCancelButton:hover"]["background-color"] = e.target.value;
               setStyles(result);
+            }}
+          />
+          <Property
+            label={"Size"}
+            type={"number"}
+            value={removeUnit(styles[".searchCancelButton"]["width"])}
+            min={"0"}
+            max={"50"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[".searchCancelButton"]["width"] = `${e.target.value}px`;
+              result[".searchCancelButton"]["height"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Icon Size"}
+            type={"number"}
+            value={properties["searchCancelIconSize"]}
+            min={"0"}
+            max={"50"}
+            action={(e) => {
+              let result = {...properties};
+              e = minMaxChecker(e);
+              result["searchCancelIconSize"] = e.target.value;
+              setProperties(result);
             }}
           />
           </>

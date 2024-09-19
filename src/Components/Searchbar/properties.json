@@ -23,5 +23,6 @@
     "defaultEngine": "ecosia",
     "isOpenNewTab": true,
     "isCancelButtonEnabled": true,
-    "searchCancelIconColor": "#000000"
+    "searchCancelIconColor": "#000000",
+    "searchCancelIconSize": "24"
 }
