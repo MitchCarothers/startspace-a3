@@ -21,5 +21,7 @@
         "ecosia": "https://www.ecosia.org/search?q="
     },
     "defaultEngine": "ecosia",
-    "isOpenNewTab": true
+    "isOpenNewTab": true,
+    "isCancelButtonEnabled": true,
+    "searchCancelIconColor": "#000000"
 }

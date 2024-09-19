@@ -12,6 +12,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
   let [isEngineSelectOpen, setIsEngineSelectOpen] = useState(false);
   let [isSearchTextOpen, setIsSearchTextOpen] = useState(false);
   let [isPlaceholderOpen, setIsPlaceholderOpen] = useState(false);
+  let [isCancelButtonOpen, setIsCancelButtonOpen] = useState(true);
 
   return(
     <div className="ui">
@@ -52,11 +53,11 @@ export default function UI({styles, setStyles, properties, setProperties}) {
           <Property
             label={"Base Color"}
             type={"color"}
-            value={styles[".searchForm > :first-child"]["background-color"]}
+            value={styles[".searchForm > :first-child:not(.searchButton)"]["background-color"]}
             action={(e) => {
               let result = {...styles};
-              result[".searchForm > :first-child"]["background-color"] = e.target.value;
-              result[".searchForm > :last-child:not(.searchButtonRight)"]["background-color"] = e.target.value;
+              result[".searchForm > :first-child:not(.searchButton)"]["background-color"] = e.target.value;
+              result[".searchForm > :last-child:not(.searchButton)"]["background-color"] = e.target.value;
               result[".searchForm > :not(:first-child):not(:last-child)"]["background-color"] = e.target.value;
               setStyles(result);
             }}
@@ -110,6 +111,34 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
               if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
               result[".searchButton"]["width"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Left Margin"}
+            type={"number"}
+            value={removeUnit(styles[".searchButton"]["padding-left"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".searchButton"]["padding-left"] = `${e.target.value}px`
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Right Margin"}
+            type={"number"}
+            value={removeUnit(styles[".searchButton"]["padding-right"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".searchButton"]["padding-right"] = `${e.target.value}px`
               setStyles(result);
             }}
           />
@@ -295,8 +324,6 @@ export default function UI({styles, setStyles, properties, setProperties}) {
         }
       />
 
-
-
       {/* ENGINE SELECTOR */}
       <Dropdown
         state={isEngineSelectOpen}
@@ -339,6 +366,34 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               <option value="ecosia">Ecosia</option>
               </>
             }
+          />
+          <Property
+            label={"Left Margin"}
+            type={"number"}
+            value={removeUnit(styles[".engineSelectContainer"]["padding-left"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".engineSelectContainer"]["padding-left"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Right Margin"}
+            type={"number"}
+            value={removeUnit(styles[".engineSelectContainer"]["padding-right"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              if(parseInt(e.target.value) >= parseInt(e.target.max)) {e.target.value = e.target.max};
+              if(parseInt(e.target.value) < parseInt(e.target.min)) {e.target.value = e.target.min};
+              result[".engineSelectContainer"]["padding-right"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
           />
           <Property
             label={"Icon Color"}
@@ -557,6 +612,47 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               result[".searchForm > :first-child"]["border-bottom-left-radius"] = `${e.target.value}px`;
               result[".searchForm > :last-child"]["border-top-right-radius"] = `${e.target.value}px`;
               result[".searchForm > :last-child"]["border-bottom-right-radius"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          </>
+        }
+      />
+
+      {/* CANCEL BUTTON */}
+      <Dropdown
+        state={isCancelButtonOpen}
+        setter={setIsCancelButtonOpen}
+        label={"Cancel Button"}
+        content={
+          <>
+          <Property
+            label={"Enabled"}
+            type={"checkbox"}
+            value={properties["isCancelButtonEnabled"]}
+            action={(e) => {
+              let result = {...properties};
+              result["isCancelButtonEnabled"] = e.target.checked;
+              setProperties(result);
+            }}
+          />
+          <Property
+            label={"Icon Color"}
+            type={"color"}
+            value={properties["searchCancelIconColor"]}
+            action={(e) => {
+              let result = {...properties};
+              result["searchCancelIconColor"] = e.target.value;
+              setProperties(result);
+            }}
+          />
+          <Property
+            label={"Base Color"}
+            type={"color"}
+            value={styles[".searchCancelButton:hover"]["background-color"]}
+            action={(e) => {
+              let result = {...styles};
+              result[".searchCancelButton:hover"]["background-color"] = e.target.value;
               setStyles(result);
             }}
           />

@@ -49,10 +49,10 @@ export default function Searchbar() {
           onChange={(e) => { setSearchValue(e.target.value) }}
         />
 
-        {searchValue !== "" &&
+        {searchValue !== "" && properties.isCancelButtonEnabled &&
         <div className="searchCancel">
           <button onClick={() => {setSearchValue("")}} className={"searchCancelButton"} type="button">
-            <BsX size={"20"}/>
+            <BsX color={properties["searchCancelIconColor"]} size={"20"}/>
           </button>
         </div>
         }
