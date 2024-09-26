@@ -3,7 +3,14 @@
         "--searchHeight": "40px",
         "--engineOffset": "2px",
         "--engineIconOffset": "18px",
-        "--engineSearchHeight": "calc((var(--searchHeight) - 30px - var(--engineOffset)) - var(--engineIconOffset))"
+        "--engineSearchHeight": "calc((var(--searchHeight) - 30px - var(--engineOffset)) - var(--engineIconOffset))",
+        "--searchShadowBlur": "5px",
+        "--searchShadowColorCode": "#000000",
+        "--searchShadowOpacity": "36",
+        "--searchShadowColor": "#00000036",
+        "--searchShadowOffsetX": "0px",
+        "--searchShadowOffsetY": "0px",
+        "--searchShadowStart": "0px"
     },
     ".searchForm > :first-child": {
         "border-style": "solid",
@@ -38,7 +45,9 @@
     ".searchForm": {
         "display": "flex",
         "width": "400px",
-        "height": "var(--searchHeight)"
+        "height": "var(--searchHeight)",
+        "border-radius": "20px",
+        "box-shadow": "var(--searchShadowOffsetX) var(--searchShadowOffsetY) var(--searchShadowBlur) var(--searchShadowStart) var(--searchShadowColor)"
     },
     ".searchText": {
         "flex": "1",
@@ -72,7 +81,8 @@
         "font-size": "12px",
         "color": "#000000",
         "padding-left": "0px",
-        "padding-right": "0px"
+        "padding-right": "0px",
+        "cursor": "pointer"
     },
     ".searchButton:hover": {
         "opacity": "80%",

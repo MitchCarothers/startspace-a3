@@ -12,7 +12,8 @@ export default function UI({styles, setStyles, properties, setProperties}) {
   let [isEngineSelectOpen, setIsEngineSelectOpen] = useState(false);
   let [isSearchTextOpen, setIsSearchTextOpen] = useState(false);
   let [isPlaceholderOpen, setIsPlaceholderOpen] = useState(false);
-  let [isCancelButtonOpen, setIsCancelButtonOpen] = useState(true);
+  let [isCancelButtonOpen, setIsCancelButtonOpen] = useState(false);
+  let [isShadowOpen, setIsShadowOpen] = useState(true);
 
   return(
     <div className="ui">
@@ -57,6 +58,23 @@ export default function UI({styles, setStyles, properties, setProperties}) {
               result[".searchForm > :first-child:not(.searchButton)"]["background-color"] = e.target.value;
               result[".searchForm > :last-child:not(.searchButton)"]["background-color"] = e.target.value;
               result[".searchForm > :not(:first-child):not(:last-child)"]["background-color"] = e.target.value;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Radius"}
+            type={"number"}
+            value={removeUnit(styles[".searchForm > :first-child"]["border-top-left-radius"])}
+            min={"0"}
+            max={"200"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[".searchForm > :first-child"]["border-top-left-radius"] = `${e.target.value}px`;
+              result[".searchForm > :first-child"]["border-bottom-left-radius"] = `${e.target.value}px`;
+              result[".searchForm > :last-child"]["border-top-right-radius"] = `${e.target.value}px`;
+              result[".searchForm > :last-child"]["border-bottom-right-radius"] = `${e.target.value}px`;
+              result[".searchForm"]["border-radius"] = `${e.target.value}px`
               setStyles(result);
             }}
           />
@@ -593,12 +611,104 @@ export default function UI({styles, setStyles, properties, setProperties}) {
             label={"Radius"}
             type={"number"}
             value={removeUnit(styles[".searchForm > :first-child"]["border-top-left-radius"])}
+            min={"0"}
+            max={"200"}
             action={(e) => {
               let result = {...styles};
+              e = minMaxChecker(e);
               result[".searchForm > :first-child"]["border-top-left-radius"] = `${e.target.value}px`;
               result[".searchForm > :first-child"]["border-bottom-left-radius"] = `${e.target.value}px`;
               result[".searchForm > :last-child"]["border-top-right-radius"] = `${e.target.value}px`;
               result[".searchForm > :last-child"]["border-bottom-right-radius"] = `${e.target.value}px`;
+              result[".searchForm"]["border-radius"] = `${e.target.value}px`
+              setStyles(result);
+            }}
+          />
+          </>
+        }
+      />
+
+      {/* SHADOW */}
+      <Dropdown
+        state={isShadowOpen}
+        setter={setIsShadowOpen}
+        label={"Shadow"}
+        content={
+          <>
+          <Property
+            label={"Color"}
+            type={"color"}
+            value={styles[":root"]["--searchShadowColorCode"]}
+            action={(e) => {
+              let result = {...styles};
+              result[":root"]["--searchShadowColorCode"] = e.target.value;
+              result[":root"]["--searchShadowColor"] = `${e.target.value}${result[":root"]["--searchShadowOpacity"]}`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Opacity"}
+            type={"number"}
+            value={parseInt(styles[":root"]["--searchShadowOpacity"], 16)}
+            min={"0"}
+            max={"255"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[":root"]["--searchShadowOpacity"] = parseInt(e.target.value).toString(16);
+              result[":root"]["--searchShadowColor"] = `${result[":root"]["--searchShadowColorCode"]}${parseInt(e.target.value).toString(16)}`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Blur Radius"}
+            type={"number"}
+            value={removeUnit(styles[":root"]["--searchShadowBlur"])}
+            min={"0"}
+            max={"30"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[":root"]["--searchShadowBlur"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Offset X"}
+            type={"number"}
+            value={removeUnit(styles[":root"]["--searchShadowOffsetX"])}
+            min={"-30"}
+            max={"30"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[":root"]["--searchShadowOffsetX"] = `${-e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Offset Y"}
+            type={"number"}
+            value={removeUnit(styles[":root"]["--searchShadowOffsetY"])}
+            min={"-30"}
+            max={"30"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[":root"]["--searchShadowOffsetY"] = `${e.target.value}px`;
+              setStyles(result);
+            }}
+          />
+          <Property
+            label={"Size"}
+            type={"number"}
+            value={removeUnit(styles[":root"]["--searchShadowStart"])}
+            min={"0"}
+            max={"20"}
+            action={(e) => {
+              let result = {...styles};
+              e = minMaxChecker(e);
+              result[":root"]["--searchShadowStart"] = `${e.target.value}px`;
               setStyles(result);
             }}
           />
