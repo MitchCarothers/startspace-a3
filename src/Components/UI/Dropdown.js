@@ -1,21 +1,41 @@
 // Used for creating the customizations UI in each component
 
-import { BsChevronDown, BsChevronRight } from "react-icons/bs";
+import { BsArrowsMove, BsChevronDown, BsChevronRight } from "react-icons/bs";
+import Draggable from "react-draggable";
+import { useState } from "react";
 
 export default function Dropdown({state, setter, label, content, subclass}) {
+  let [isDragging, setIsDragging] = useState(false);
+
   let chevrons = (condition) => {
     if(condition) {
-      return(<BsChevronDown />);
+      return(<BsChevronDown className="chevron" />);
     } else if (!condition) {
-      return(<BsChevronRight />);
+      return(<BsChevronRight className="chevron" />);
     }
   };
 
   return(
-    <div className={`dropdown ${subclass}`}>
-      <div onClick={() => {setter(!state)}}>
+    <Draggable
+      handle={".dropdownLabelContainer"}
+      onStart={(e) => { setIsDragging(true) }}  
+      onStop={(e) => { setIsDragging(false) }}
+    >
+    <div className={`dropdown ${subclass}`} >
+      <div onClick={() => {
+          console.log(isDragging)
+          if(!isDragging) {setter(!state)}
+        }}
+        className={"dropdownLabelContainer"}
+      >
         {chevrons(state)}
         <span className="label">{label}</span>
+        {
+        subclass === "ui" &&
+        <div className={"uiMover"}>
+          <BsArrowsMove className="uiMoverIcon" />
+        </div>
+        }
       </div>
       {
         state &&
@@ -24,5 +44,6 @@ export default function Dropdown({state, setter, label, content, subclass}) {
         </div>
       }
     </div>
+    </Draggable>
   );
 };

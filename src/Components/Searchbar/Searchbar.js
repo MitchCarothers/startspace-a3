@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./styles.css";
 import styleManagerService from "../../Services/styleManager";
 import UI from "./UI.js";
 import stylesJson from "./styles.json"
@@ -7,9 +6,11 @@ import propertiesJson from "./properties.json";
 import { BsX } from "react-icons/bs";
 import EngineSelect from "./EngineSelect.js";
 import SearchIcon from "./SearchIcon.js";
+import Dropdown from "../UI/Dropdown.js";
 
 let styleManager = new styleManagerService({}, "searchbar");
 export default function Searchbar() {
+  let [isCustomizationOpen, setIsCustomizationOpen] = useState(false);
   let [searchValue, setSearchValue] = useState("");
   let [properties, setProperties] = useState(propertiesJson);
   let [styles, setStyles] = useState(stylesJson);
@@ -74,12 +75,19 @@ export default function Searchbar() {
         </button>
         }
       </form>
-
-      <UI
-        styles={styles}
-        setStyles={setStyles}
-        properties={properties}
-        setProperties={setProperties}
+      <Dropdown
+        state={isCustomizationOpen}
+        setter={setIsCustomizationOpen}
+        label={"Search Bar"}
+        subclass={"ui"}
+        content={
+          <UI
+          styles={styles}
+          setStyles={setStyles}
+          properties={properties}
+          setProperties={setProperties}
+          />
+        }
       />
     </>
   );

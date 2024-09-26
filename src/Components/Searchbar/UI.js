@@ -13,7 +13,7 @@ export default function UI({styles, setStyles, properties, setProperties}) {
   let [isSearchTextOpen, setIsSearchTextOpen] = useState(false);
   let [isPlaceholderOpen, setIsPlaceholderOpen] = useState(false);
   let [isCancelButtonOpen, setIsCancelButtonOpen] = useState(false);
-  let [isShadowOpen, setIsShadowOpen] = useState(true);
+  let [isShadowOpen, setIsShadowOpen] = useState(false);
 
   return(
     <div className="ui">

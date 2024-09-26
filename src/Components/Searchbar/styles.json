@@ -105,7 +105,8 @@
         "border": "none",
         "border-radius": "40px",
         "width": "28px",
-        "height": "28px"
+        "height": "28px",
+        "cursor": "pointer"
     },
     ".searchCancelButton:hover": {
         "background-color": "#F2F2F2"
@@ -139,11 +140,13 @@
         "background-color": "rgb(2,0,0,0)",
         "padding": "10px",
         "border-radius": "30px",
-        "border": "none"
+        "border": "none",
+        "cursor": "pointer"
     },
     ".engineIcon": {
         "opacity": "75%",
-        "z-index": "1"
+        "z-index": "1",
+        "cursor": "pointer"
     },
     ".engineIcon:hover": {
         "opacity": "100%"

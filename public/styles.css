@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+.ui {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dropdown.ui {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-family: Gowun Batang;
+  font-size: 18px;
+  width: 300px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  gap: 0px;
+}
+
+.dropdown {
+  background-color: rgba(124, 124, 124, 0.3);
+  padding: 6px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  width: fit-content;
+  padding-right: 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dropdown.nested {
+  margin-top: 10px;
+}
+
+.chevron {
+  cursor: pointer;
+}
+
+.dropdown .label {
+  user-select: none;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.property {
+  display: grid;
+  grid-template-columns: 90px 100px;
+  margin-bottom: 6px;
+  min-width: 100px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.propertyContainer > :first-child {
+  margin-top: 8px;
+}
+
+.checkbox {
+  justify-self: start;
+}
+
+input.number {
+  min-width: 20px;
+  max-width: 50px;
+}
+
+input.text {
+  min-width: 40px;
+  max-width: 70px;
+}
+
+.dropdownLabelContainer {
+  display: flex;
+  align-items: center;
+}
+
+.uiMover {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+}
